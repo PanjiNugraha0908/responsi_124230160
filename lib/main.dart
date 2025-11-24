@@ -2,16 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'screens/login_screen.dart';
+import 'screens/categories_screen.dart'; 
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   
-  // 1. Inisialisasi Hive
+  
   await Hive.initFlutter();
+
   await Hive.openBox('users'); 
 
-  // 2. Cek Session Login
   final prefs = await SharedPreferences.getInstance();
+  
   final String? username = prefs.getString('current_user');
   
   runApp(MyApp(isLoggedIn: username != null));
@@ -24,14 +26,24 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
+    const Color primaryOrange = Color(0xFFFF7A00); 
+
     return MaterialApp(
-      title: 'Nintendo Amiibo App',
+      title: 'Meal App', 
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: primaryOrange),
         useMaterial3: true,
+        
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.white,
+          foregroundColor: Colors.black,
+          elevation: 1, 
+        ),
       ),
-      home: isLoggedIn ? const LoginPage() : const LoginPage(),
+      
+      home: isLoggedIn ? const CategoriesPage() : const LoginPage(),
     );
   }
 }
