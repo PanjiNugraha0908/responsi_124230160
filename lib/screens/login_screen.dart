@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:hive_flutter/hive_flutter.dart'; 
+import 'package:hive_flutter/hive_flutter.dart';
 import 'categories_screen.dart';
 
 class LoginPage extends StatefulWidget {
@@ -12,7 +12,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final Box _userBox = Hive.box('users'); 
+  final Box _userBox = Hive.box('users');
 
   static const Color primaryOrange = Color(0xFFFF7A00);
 
@@ -30,8 +30,7 @@ class _LoginPageState extends State<LoginPage> {
     if (_userBox.containsKey(username)) {
       final storedPassword = _userBox.get(username);
       if (storedPassword == password) {
-
-        await prefs.setString('current_user', username); 
+        await prefs.setString('current_user', username);
         await prefs.setBool('isLogin', true);
         if (mounted) {
           Navigator.pushReplacement(
@@ -43,8 +42,8 @@ class _LoginPageState extends State<LoginPage> {
         _showSnackbar("Password salah.", Colors.red);
       }
     } else {
-      _userBox.put(username, password); 
-      await prefs.setString('current_user', username); 
+      _userBox.put(username, password);
+      await prefs.setString('current_user', username);
       await prefs.setBool('isLogin', true);
       if (mounted) {
         _showSnackbar("Registrasi berhasil! Anda telah login.", primaryOrange);
@@ -76,11 +75,11 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "🍽️ Food Explorer",
+                "Responsi Aku",
                 style: TextStyle(
                   fontSize: 32,
                   fontWeight: FontWeight.bold,
-                  color: primaryOrange,
+                  color: const Color.fromARGB(255, 160, 80, 4),
                 ),
               ),
               const SizedBox(height: 50),
@@ -89,7 +88,6 @@ class _LoginPageState extends State<LoginPage> {
                 decoration: InputDecoration(
                   labelText: "Username",
                   hintText: "Masukkan username Anda",
-                  prefixIcon: const Icon(Icons.person, color: primaryOrange),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                     borderSide: BorderSide.none,
@@ -105,7 +103,6 @@ class _LoginPageState extends State<LoginPage> {
                 decoration: InputDecoration(
                   labelText: "Password",
                   hintText: "Masukkan password",
-                  prefixIcon: const Icon(Icons.lock, color: primaryOrange),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                     borderSide: BorderSide.none,
@@ -121,7 +118,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: ElevatedButton(
                   onPressed: _login,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: primaryOrange,
+                    backgroundColor: const Color.fromARGB(255, 160, 80, 4),
                     foregroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(vertical: 15),
                     shape: RoundedRectangleBorder(
@@ -130,17 +127,12 @@ class _LoginPageState extends State<LoginPage> {
                     elevation: 5,
                   ),
                   child: const Text(
-                    "LOGIN / REGISTER",
+                    "Masuk OIII",
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
               const SizedBox(height: 10),
-              Text(
-                "Jika username belum terdaftar, akan didaftarkan otomatis.",
-                textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.grey[600], fontSize: 12),
-              ),
             ],
           ),
         ),

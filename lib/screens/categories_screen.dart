@@ -14,7 +14,6 @@ class CategoriesPage extends StatefulWidget {
 class _CategoriesPageState extends State<CategoriesPage> {
   static const Color primaryOrange = Color(0xFFFF7A00);
 
-  // Fungsi Logout
   Future<void> _logout() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.clear(); 
@@ -40,7 +39,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
             onPressed: _logout,
             icon: const Icon(
               Icons.logout,
-              color: primaryOrange,
+              color: const Color.fromARGB(255, 160, 80, 4),
             ), 
           ),
         ],

@@ -40,8 +40,7 @@ class MealsPage extends StatelessWidget {
             padding: const EdgeInsets.all(10),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              childAspectRatio:
-                  0.75, 
+              childAspectRatio: 0.75,
               crossAxisSpacing: 12,
               mainAxisSpacing: 12,
             ),
